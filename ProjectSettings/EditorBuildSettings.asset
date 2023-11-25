@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/AMazeIng/demo.unity
-    guid: 6d4b8eacbaf9ee0459a4f6c72d66ddc3
+    path: Assets/MazeGenerator/demo.unity
+    guid: 5f66713930f36f84a865122d99889d76
   m_configObjects: {}
