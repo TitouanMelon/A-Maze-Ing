@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System.IO; 
+using System.Text;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -12,13 +15,15 @@ public class RollerBall : MonoBehaviour {
 	public TextMeshProUGUI timerText = null;
 	public TextMeshProUGUI scoreText = null;
 	public string LevelToLoad; //Game scene
-
 	private AudioSource mAudioSource = null;
-
 	private GameObject[] coins = {};
 	private int coinsCollect = 0;
 	private float time = 0;
 	private bool win = false;
+	private TextWriter writer;
+	public GameObject playerNameMenu; // Assign in inspector
+	public Button confirmButton = null;
+	public TMP_InputField playerNameInput = null;
 
 	void Start () {
 		mAudioSource = GetComponent<AudioSource>();
@@ -26,6 +31,12 @@ public class RollerBall : MonoBehaviour {
 		coinsCollect = 0;
 		coins = new GameObject[] {};
 		time = 0;
+		playerNameMenu.SetActive(false);
+		// adding a delegate with no parameters
+		if (confirmButton != null)
+	        confirmButton.onClick.AddListener(_onConfirm);
+        /*adding a delegate with parameters
+        btn.onClick.AddListener(delegate{ParameterOnClick("Button was pressed!");});*/
 	}
 
 	void Update()
@@ -35,6 +46,7 @@ public class RollerBall : MonoBehaviour {
 			coins = GameObject.FindGameObjectsWithTag("Coin");
 			Debug.Log(coins.Length);
 			coinsCollect = 0;
+	        writer = File.AppendText("./Assets/Score/" + coins.Length.ToString() + ".txt");
 		}
 		else
 		{
@@ -48,7 +60,7 @@ public class RollerBall : MonoBehaviour {
 
 		if (win)
 		{
-			SceneManager.LoadScene(LevelToLoad);
+			playerNameMenu.SetActive(true);
 		}
 	}
 
@@ -59,6 +71,16 @@ public class RollerBall : MonoBehaviour {
 			}
 			Destroy(other.gameObject);
 			coinsCollect++;
+		}
+	}
+
+	private void _onConfirm()
+	{
+		if (playerNameInput.text != "")
+		{
+			writer.Write(playerNameInput.text + ":" + (((int)time)/60).ToString("00") + ":" + (((int)time)%60).ToString("00") + "\r\n");
+			writer.Close();
+			SceneManager.LoadScene(LevelToLoad);
 		}
 	}
 }
