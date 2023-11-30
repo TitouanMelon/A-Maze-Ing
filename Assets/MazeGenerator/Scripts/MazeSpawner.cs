@@ -11,6 +11,7 @@ public class MazeSpawner : MonoBehaviour {
 		RandomTree,
 		OldestTree,
 		RecursiveDivision,
+		FaustineMaze,
 	}
 
 	public MazeGenerationAlgorithm Algorithm = MazeGenerationAlgorithm.PureRecursive;
@@ -52,8 +53,11 @@ public class MazeSpawner : MonoBehaviour {
 		case MazeGenerationAlgorithm.RecursiveDivision:
 			mMazeGenerator = new DivisionMazeGenerator (Rows, Columns);
 			break;
+		case MazeGenerationAlgorithm.FaustineMaze:
+			mMazeGenerator = new FaustineMazeGenerator(Rows, Columns);
+			break;
 		}
-		mMazeGenerator.GenerateMaze ();
+		mMazeGenerator.GenerateMaze();
 		for (int row = 0; row < Rows; row++) {
 			for(int column = 0; column < Columns; column++){
 				float x = column*(CellWidth+(AddGaps?.2f:0));
