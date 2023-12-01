@@ -365,7 +365,9 @@
 "Assets/MazeGenerator/Scripts/RollerBall.cs"
 "Assets/MazeGenerator/Scripts/TreeMazeGenerator.cs"
 "Assets/UI Assets/Scripts/clickButton.cs"
-"Assets/UI Assets/Scripts/menuscore.cs"
+"Assets/UI Assets/Scripts/clickLevelButton.cs"
+"Assets/UI Assets/Scripts/clickScoreButton.cs"
+"Assets/UI Assets/Scripts/Menu.cs"
 "Assets/UI Assets/Scripts/Scroller.cs"
 -langversion:9.0
 

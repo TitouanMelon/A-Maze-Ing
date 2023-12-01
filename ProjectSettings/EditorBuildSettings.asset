@@ -6,9 +6,42 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/mainMenu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/MazeGenerator/demo.unity
+    path: Assets/Scenes/level_1.unity
+    guid: 53f21abf631e162459c380bf0b15e68b
+  - enabled: 1
+    path: Assets/Scenes/level_2.unity
     guid: 5f66713930f36f84a865122d99889d76
+  - enabled: 1
+    path: Assets/Scenes/level_3.unity
+    guid: 639ede6f9edcbef4fbdc3ec430f38d74
+  - enabled: 1
+    path: Assets/Scenes/level_4.unity
+    guid: 3d42d02757f413e4ebe0767ebeb02713
+  - enabled: 1
+    path: Assets/Scenes/level_5.unity
+    guid: bb8a0283f8e629e4ab67c137262ba0aa
+  - enabled: 1
+    path: Assets/Scenes/level_6.unity
+    guid: 20049c41dc47e0f49b37d22e18d85b5d
+  - enabled: 1
+    path: Assets/Scenes/level_7.unity
+    guid: 67652fcf7cb77f346bceaff162f05b02
+  - enabled: 1
+    path: Assets/Scenes/level_8.unity
+    guid: 8d71b3c849b00a14cbcd9f1ac9d102d6
+  - enabled: 1
+    path: Assets/Scenes/level_9.unity
+    guid: ca08c8cee1fbe614691ca3ae63b72306
+  - enabled: 1
+    path: Assets/Scenes/level_10.unity
+    guid: 182d2236e2ed48f4293268cc291a0f88
+  - enabled: 1
+    path: Assets/Scenes/level_11.unity
+    guid: d6081eaa70434ee4c8b4ea2930de4da8
+  - enabled: 1
+    path: Assets/Scenes/level_12.unity
+    guid: 77460125b1212184a8976108885fee34
   m_configObjects: {}

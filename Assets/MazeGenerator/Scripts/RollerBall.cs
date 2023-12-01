@@ -24,6 +24,7 @@ public class RollerBall : MonoBehaviour {
 	public GameObject playerNameMenu; // Assign in inspector
 	public Button confirmButton = null;
 	public TMP_InputField playerNameInput = null;
+	public string level = "0";
 
 	void Start () {
 		mAudioSource = GetComponent<AudioSource>();
@@ -32,11 +33,8 @@ public class RollerBall : MonoBehaviour {
 		coins = new GameObject[] {};
 		time = 0;
 		playerNameMenu.SetActive(false);
-		// adding a delegate with no parameters
 		if (confirmButton != null)
 	        confirmButton.onClick.AddListener(_onConfirm);
-        /*adding a delegate with parameters
-        btn.onClick.AddListener(delegate{ParameterOnClick("Button was pressed!");});*/
 	}
 
 	void Update()
@@ -44,9 +42,8 @@ public class RollerBall : MonoBehaviour {
 		if (coins.Length == 0)
 		{
 			coins = GameObject.FindGameObjectsWithTag("Coin");
-			Debug.Log(coins.Length);
 			coinsCollect = 0;
-	        writer = File.AppendText("./Assets/Score/" + coins.Length.ToString() + ".txt");
+	        writer = File.AppendText("./Assets/Score/" + level + ".txt");
 		}
 		else
 		{
@@ -78,7 +75,7 @@ public class RollerBall : MonoBehaviour {
 	{
 		if (playerNameInput.text != "")
 		{
-			writer.Write(playerNameInput.text + ":" + (((int)time)/60).ToString("00") + ":" + (((int)time)%60).ToString("00") + "\r\n");
+			writer.Write(playerNameInput.text + ":" + time.ToString() + "\r\n");
 			writer.Close();
 			SceneManager.LoadScene(LevelToLoad);
 		}
