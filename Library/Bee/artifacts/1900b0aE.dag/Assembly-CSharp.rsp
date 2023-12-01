@@ -364,8 +364,9 @@
 "Assets/MazeGenerator/Scripts/RecursiveTreeMazeGenerator.cs"
 "Assets/MazeGenerator/Scripts/RollerBall.cs"
 "Assets/MazeGenerator/Scripts/TreeMazeGenerator.cs"
+"Assets/UI Assets/Scripts/clickButton.cs"
+"Assets/UI Assets/Scripts/menuscore.cs"
 "Assets/UI Assets/Scripts/Scroller.cs"
-"Assets/UI Assets/Sprites/clickButton.cs"
 -langversion:9.0
 
 /deterministic

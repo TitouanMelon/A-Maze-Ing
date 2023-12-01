@@ -58,11 +58,12 @@
     <Compile Include="Assets\MazeGenerator\Scripts\RecursiveTreeMazeGenerator.cs" />
     <Compile Include="Assets\UI Assets\Scripts\Scroller.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\MazeSpawner.cs" />
+    <Compile Include="Assets\UI Assets\Scripts\clickButton.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\RecursiveMazeGenerator.cs" />
-    <Compile Include="Assets\UI Assets\Sprites\clickButton.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\OldestTreeMazeGenerator.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\RollerBall.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\RandomTreeMazeGenerator.cs" />
+    <Compile Include="Assets\UI Assets\Scripts\menuscore.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\MazeCell.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\BasicMazeGenerator.cs" />
     <Compile Include="Assets\MazeGenerator\Scripts\FaustineMazeGenerator.cs" />
@@ -95,8 +96,10 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Score\1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Score\6.txt" />
+    <None Include="Assets\Score\9.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
