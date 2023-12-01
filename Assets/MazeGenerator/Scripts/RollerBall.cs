@@ -43,7 +43,7 @@ public class RollerBall : MonoBehaviour {
 		{
 			coins = GameObject.FindGameObjectsWithTag("Coin");
 			coinsCollect = 0;
-	        writer = File.AppendText("./Assets/Score/" + level + ".txt");
+	        writer = File.AppendText(Application.persistentDataPath+"/Score/"+level+".txt");
 		}
 		else
 		{

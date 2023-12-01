@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,8 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
+        _createDataFile();
+
         backgroundObj.SetActive(true);
         mainMenuObj.SetActive(true);
         levelMenuObj.SetActive(false);
@@ -60,30 +63,30 @@ public class Menu : MonoBehaviour
             reload = false;
             levelName.text = "Level " + index.ToString();
 
-            TextReader reader;
-            string fileName = "./Assets/Score/"+index.ToString()+".txt";
-            reader = new StreamReader(fileName);
-            string result = reader.ReadToEnd();
-            reader.Close();
-
+            string[] score = _loadScore();
             int number = 0;
             foreach (GameObject line in scoreLine)
             {
                 line.SetActive(false);
-                int i = int.Parse(line.name.Split('_')[1]);
-                TextMeshProUGUI[] texts = {};
-                texts = line.GetComponentsInChildren<TextMeshProUGUI>();
-                foreach(TextMeshProUGUI text in texts)
+                if (score != null)
                 {
-                    if (number < (result.Split('\n').Length)-1)
+                    TextMeshProUGUI[] texts = {};
+                    texts = line.GetComponentsInChildren<TextMeshProUGUI>();        
+                    foreach(TextMeshProUGUI text in texts)
                     {
-                        line.SetActive(true);
-                        if (text.name.Equals("player"))
-                            text.text = result.Split('\n')[number].Split(':')[0];
-                        else if (text.name.Equals("score"))
-                            text.text = result.Split('\n')[number].Split(':')[1];
-                        number++;
+                        if (number < score.Length)
+                        {
+                            line.SetActive(true);
+                            if (text.name.Equals("player"))
+                                text.text = score[number].Split(':')[0];
+                            else if (text.name.Equals("score"))
+                            {
+                                int t = (int)float.Parse(score[number].Split(':')[1]);
+                                text.text = (((int)t)/60).ToString("00") + ":" + (((int)t)%60).ToString("00");
+                            }
+                        }
                     }
+                    number++;
                 }
             }
         }
@@ -119,5 +122,76 @@ public class Menu : MonoBehaviour
         levelMenuObj.SetActive(false);
         scoreMenuObj.SetActive(false);
         SceneManager.LoadScene("Level_"+level);
+    }
+
+    private string[] _loadScore()
+    {
+        TextReader reader;
+        string fileName = Application.persistentDataPath + "/Score/"+index.ToString()+".txt";
+        string readLine = "";
+        List<string> scoreList = new List<string>();
+
+        reader = new StreamReader(fileName);
+
+        //Get all score
+        while (true)
+        {
+            readLine = reader.ReadLine();
+            if (readLine==null) break;
+            scoreList.Add(readLine);
+        }
+        reader.Close();
+
+        if (scoreList.Count == 0)
+            return null;
+
+        List<float> scoreTimeList = new List<float>();
+        foreach (string l in scoreList)
+        {
+            scoreTimeList.Add(float.Parse(l.Split(':')[1]));
+        }
+
+        string[] score = scoreList.ToArray();
+        float[] scoreTime = scoreTimeList.ToArray();
+
+        int offset = 0;
+        int line = offset;
+        while (true)
+        {
+            line = offset;
+            for (int i=offset ; i<scoreTime.Length ; i++)
+            {
+                if (scoreTime[line] < scoreTime[i])
+                    line = i;
+            }
+
+            string tmpString = score[offset];
+            float tmpFloat = scoreTime[offset];
+
+            score[offset] = score[line];
+            scoreTime[offset] = scoreTime[line];
+            
+            score[line] = tmpString;
+            scoreTime[line] = tmpFloat;
+
+            offset++;
+            if (offset == score.Length)
+                break;
+        }
+
+        Array.Reverse(score);
+        return score;
+    }
+
+    private void _createDataFile()
+    {
+        if(!Directory.Exists(Application.persistentDataPath+"/Score"))
+            Directory.CreateDirectory(Application.persistentDataPath+"/Score");
+        
+        for (int i=1 ; i<13 ; i++)
+        {
+            if (!File.Exists(Application.persistentDataPath+"/Score/"+i.ToString()+".txt"))
+                File.WriteAllText(Application.persistentDataPath+"/Score/"+i.ToString()+".txt", "");
+        }
     }
 }
